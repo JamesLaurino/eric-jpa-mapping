@@ -13,14 +13,15 @@ import java.util.List;
 
 @Service
 public class CategoryService {
+
     @Autowired
     private CategoryRepository categoryRepository;
 
     public List<CategoryDto> getCategories() {
 
-        List<CategoryDto> categoryDtoList = new ArrayList<>();
         List<CategoryEntity> categoryEntities = categoryRepository.findAll();
 
+        List<CategoryDto> categoryDtoList = new ArrayList<>();
         List<ProductDto> productDtoList = new ArrayList<>();
 
         for (CategoryEntity categoryEntity : categoryEntities) {
@@ -33,9 +34,7 @@ public class CategoryService {
                 productDto.setId(productEntity.getId());
 
                 productDtoList.add(productDto);
-
                 categoryDto.setProducts(productDtoList);
-
             }
 
             categoryDtoList.add(categoryDto);
